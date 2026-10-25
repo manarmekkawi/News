@@ -20,24 +20,7 @@
  
 
 }
-/*function showData(data, currentPage){
-    let numberOfPages = Math.ceil(data.totalResults / 10),
-        news = data.articles,
-        $dataContainer = $("#Data .row");
-
-    $dataContainer.html("");
-    if (news.length > 0){
-        for( let item of news) {
-            $dataContainer.append(cardComponent(item));
-        }
-       
-        $("nav .pagination").html(preparePagination(currentPage, numberOfPages));
-       
-       } else {
-        
-       };
-
-}*/
+ 
 function showData(data, currentPage){
     let numberOfPages = Math.ceil(data.totalResults / 10),
         news = data.articles,
