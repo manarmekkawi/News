@@ -20,7 +20,7 @@
  
 
 }
-function showData(data, currentPage){
+/*function showData(data, currentPage){
     let numberOfPages = Math.ceil(data.totalResults / 10),
         news = data.articles,
         $dataContainer = $("#Data .row");
@@ -37,6 +37,29 @@ function showData(data, currentPage){
         
        };
 
+}*/
+function showData(data, currentPage){
+    let numberOfPages = Math.ceil(data.totalResults / 10),
+        news = data.articles,
+        $dataContainer = $("#Data .row");
+
+    $dataContainer.html("");
+ 
+    if (news && news.length > 0 && data.totalResults > 0) {
+         
+        $("#noResultsMessage").hide();
+
+        for(let item of news) {
+            $dataContainer.append(cardComponent(item));
+        }
+       
+        $("nav .pagination").html(preparePagination(currentPage, numberOfPages));
+       
+    } else {
+         
+        $("#noResultsMessage").show();
+        $("nav .pagination").html("");
+    }
 }
 function preparePagination(currentPage, totalPages) {
     let lis = `<li class="page-item ${(currentPage == 1)? 'disabled' : ''}"><a class="page-link" onclick="paginate(${(currentPage > 1)? (currentPage - 1) : 1})">Previous</a></li>`;
@@ -55,7 +78,7 @@ function preparePagination(currentPage, totalPages) {
 }
 function cardComponent(item){
     return`
-     <div class="col-lg-4 nb-3">
+     <div class="col-lg-4 mb-3">
                         <div class="item ">
                             <div class="card m-auto" style="max-width: 320px">
                                 <img src="${item.urlToImage ?? 'images/default.jpeg'}" onerror="this.src = 'images/default.jpeg';" class="card-img-top" alt="...">
